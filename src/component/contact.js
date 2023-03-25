@@ -51,18 +51,18 @@ const contect = () => {
                                 <div className="contact-form">
                                     <form className='form-group' action='mailto:its.malaythakkar@gmail.com'>
                                     <div className="field">
-                                        <label for="name"> Name:  </label>
+                                        <label htmlFor="name"> Name:  </label>
                                         <input type="text" className="form-control" name="Name" id="Name" placeholder="Name" required /><br />
                                     </div>
                                     <div className="field">
-                                        <label for="email">Email id:  </label>
+                                        <label htmlFor="email">Email id:  </label>
                                         <input type="email" className="form-control" name="Sender" id="Sender" placeholder="Email" required /><br />
                                     </div>
                                     <div className="field">
-                                        <label for="subject">Subject: </label>
+                                        <label htmlFor="subject">Subject: </label>
                                         <input type="text" className="form-control" name="Subject" id="Subject" placeholder="Subject" required /><br />
                                     </div>
-                                    <label for="message">Message: </label>
+                                    <label htmlFor="message">Message: </label>
                                     <textarea name="Message" cols="30" rows="5" className="form-control" id="Message" placeholder="Message" required /><br />
 
                                     <input type="submit" value="Send" />
