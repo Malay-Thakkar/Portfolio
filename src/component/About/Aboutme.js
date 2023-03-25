@@ -6,8 +6,7 @@ const Aboutme = () => {
         <div className="max-width">
             <h2 className="title">About</h2>
             <div className="about-content">
-                <p>I am pursuing Semester-6 in Computer Engineering at Ganpat university, I am looking for a great opportunity of learning the various concept of Problem solving, Data structure, and I want to set a career as a Software developer. I have
-                    many skills like Leadership, good problem-solving skills, ability to perform well in a team, Hard-working, presentation & quick Learner.</p>
+                <p>I am pursuing Semester-6 in Computer Engineering at Ganpat university.I am proficient in HTML, CSS, JavaScript, and Node.js for server-side development. I am familiar with front-end frameworks like React and back-end frameworks like Express. I can solve complex problems and troubleshoot technical issues, and I have knowledge of version control systems like Git and GitHub.</p>
                 <br />
             </div>
         
