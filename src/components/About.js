@@ -14,16 +14,16 @@ export const About = () => {
 
                     <Skills />
                     <Row>
-                        <div class="about-item">
-                            <div class="abt-text">
-                                <p class="large-text">30+</p>
-                                <p class="small-text">Projects <br /> Completed</p>
+                        <div className="about-item">
+                            <div className="abt-text">
+                                <p className="large-text">30+</p>
+                                <p className="small-text">Projects <br /> Completed</p>
                             </div>
                         </div>
-                        <div class="about-item">
-                            <div class="abt-text">
-                                <p class="large-text">2+</p>
-                                <p class="small-text">Happy <br /> Client</p>
+                        <div className="about-item">
+                            <div className="abt-text">
+                                <p className="large-text">2+</p>
+                                <p className="small-text">Happy <br /> Client</p>
                             </div>
                         </div>
                     </Row>

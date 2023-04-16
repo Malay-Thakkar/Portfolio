@@ -11,21 +11,21 @@ export const Services = () => {
                 <Container>
                     <Row>
                         <h2>Services</h2>
-                        <div class="services-item">
-                            <div class="services-text">
-                                <p class="large-text">Web <br/>Devlopment</p>
+                        <div className="services-item">
+                            <div className="services-text">
+                                <p className="large-text">Web <br/>Devlopment</p>
                                 <img src={bg2} className="ser-image" alt="bg1" />
                             </div>
                         </div>
-                        <div class="services-item">
-                            <div class="services-text">
-                                <p class="large-text">DAPP <br/>Devlopment</p>
+                        <div className="services-item">
+                            <div className="services-text">
+                                <p className="large-text">DAPP <br/>Devlopment</p>
                                 <img src={bg3} className="ser-image" alt="bg2" />
                             </div>
                         </div>
-                        <div class="services-item">
-                            <div class="services-text">
-                                <p class="large-text">UI/UX <br/>Designer</p>
+                        <div className="services-item">
+                            <div className="services-text">
+                                <p className="large-text">UI/UX <br/>Designer</p>
                                 <img src={bg1} className="ser-image" alt="bg1" />
                             </div>
                         </div>

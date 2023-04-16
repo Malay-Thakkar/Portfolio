@@ -29,29 +29,3 @@ export const Footer = () => {
 }
 
  
- 
-
-    // <div class="sosial">
-    // <h2 class="title" style="color:hsl(57, 86%, 81%);">Follow On</h2>
-   
-    //   <ul class="social-media-list">
-    //     <li>
-    //       <a href="https://www.linkedin.com/in/malay-thakkar/" target="_blank" class="contact-icon">
-    //         <i class="fa fa-linkedin" aria-hidden="true"></i>
-    //       </a>
-    //     </li>
-    //     <li>
-    //       <a href="https://github.com/Malay-Thakkar" target="_blank" class="contact-icon">
-    //         <i class="fa fa-github" aria-hidden="true"></i></a>
-    //     </li>
-    //     <li>
-    //       <a href="https://www.instagram.com/thakkar_malay/" target="_blank" class="contact-icon">
-    //         <i class="fa fa-instagram" aria-hidden="true"></i></a>
-    //     </li>
-    //   </ul>
-    
-    // </div>
-    //   <footer>
-    //     <span>Created By Malay Thakkar| <span class="far fa-copyright"></span> 2022 All rights reserved.
-    //   </span>
-    // </footer>

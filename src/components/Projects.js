@@ -61,28 +61,28 @@ export const Projects = () => {
 
   return (
     <section className="project" id="projects">
-      <Container>
-        <Row>
-          <Col size={12}>
-            <TrackVisibility>
-              {({ isVisible }) =>
-                <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
-                  <h2>Projects</h2>
-                  <Tab.Container id="projects-tabs" defaultActiveKey="first">
-                    <Nav variant="pills" className="nav-pills mb-5 justify-content-center align-items-center" id="pills-tab">
-                      <Nav.Item>
-                        <Nav.Link eventKey="first">All</Nav.Link>
-                      </Nav.Item>
-                      <Nav.Item>
-                        <Nav.Link eventKey="second">Web</Nav.Link>
-                      </Nav.Item>
-                      <Nav.Item>
-                        <Nav.Link eventKey="third">DAPP & Desktop APP</Nav.Link>
-                      </Nav.Item>
-                    </Nav>
-                    <Tab.Content id="slideInUp" className={isVisible ? "animate__animated animate__slideInUp" : ""}>
-                      <Tab.Pane eventKey="first">
-                        <Row>
+    <Container>
+      <Row>
+        <Col size={12}>
+          <TrackVisibility>
+            {({ isVisible }) =>
+            <div className={isVisible ? "animate__animated animate__fadeIn": ""}>
+              <h2>Projects</h2>
+              <Tab.Container id="projects-tabs" defaultActiveKey="first">
+                <Nav variant="pills" className="nav-pills mb-5 justify-content-center align-items-center" id="pills-tab">
+                  <Nav.Item>
+                    <Nav.Link eventKey="first">ALL</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="second">Web</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="third">DAPP & Desktop App</Nav.Link>
+                  </Nav.Item>
+                </Nav>
+                <Tab.Content id="slideInUp" className={isVisible ? "animate__animated animate__slideInUp" : ""}>
+                  <Tab.Pane eventKey="first">
+                    <Row>
                           {
                             projects.map((project, index) => {
                               return (

@@ -60,7 +60,7 @@ export const Banner = () => {
                 <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
                   <span className="tagline">Welcome to my Portfolio</span>
                   <h1>Hello, I'm<br />Malay Thakkar</h1>
-                  <h2>and i'm <span className="txt-rotate" style={{color:"aqua"}} dataPeriod="100" data-rotate='[ "Full Stack Devloper", "DAPP Devloper", "UI/UX Designer", "Smart contract Devloper"]'>{text}</span></h2>
+                  <h2>and i'm <span className="txt-rotate" style={{color:"aqua"}}  data-rotate='[ "Full Stack Devloper", "DAPP Devloper", "UI/UX Designer", "Smart contract Devloper"]'>{text}</span></h2>
                   <div className="social-icon">
                     <a href="https://www.linkedin.com/in/malay-thakkar/"><img src={navIcon1} alt="Icon" /></a>
                     <a href="https://github.com/Malay-Thakkar"><img src={navIcon2} alt="Icon" /></a>
@@ -68,6 +68,7 @@ export const Banner = () => {
                   </div><br/>
                   <button className="resume-btn"><a href="#resume"> Download Resume<ArrowRightCircle size={25} /></a></button>
                   <button ><a href="#contect">Let’s Connect <ArrowRightCircle size={25} /> </a></button>
+                
                
                 </div>}
             </TrackVisibility>
