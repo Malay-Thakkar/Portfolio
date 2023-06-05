@@ -16,14 +16,14 @@ export const About = () => {
                     <Row>
                         <div className="about-item">
                             <div className="abt-text">
-                                <p className="large-text">30+</p>
+                                <p className="large-text">15+</p>
                                 <p className="small-text">Projects <br /> Completed</p>
                             </div>
                         </div>
                         <div className="about-item">
                             <div className="abt-text">
-                                <p className="large-text">2+</p>
-                                <p className="small-text">Happy <br /> Client</p>
+                                <p className="large-text">1000+</p>
+                                <p className="small-text">Github Profile <br />View</p>
                             </div>
                         </div>
                     </Row>

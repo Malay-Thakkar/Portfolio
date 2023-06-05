@@ -1,6 +1,7 @@
-import meter1 from "../assets/img/meter1.svg";
-import meter2 from "../assets/img/meter2.svg";
-import meter3 from "../assets/img/meter3.svg";
+import meter1 from "../assets/img/meter60.png";
+import meter2 from "../assets/img/meter80.png";
+import meter4 from "../assets/img/meter70.png";
+// import meter3 from "../assets/img/meter3.svg";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import colorSharp from "../assets/img/color-sharp.png"
@@ -35,15 +36,15 @@ export const Skills = () => {
               <h2>Skills</h2>
               <Carousel responsive={responsive} infinite={true} className="owl-carousel owl-theme skill-slider">
                 <div className="item">
-                  <img src={meter1} alt="skill1" />                     
+                  <img src={meter4} alt="skill1" />                     
                   <h5>Node.js</h5>
                 </div>
                 <div className="item">
-                  <img src={meter2} alt="skill1" />
+                  <img src={meter1} alt="skill1" />
                   <h5>React.js</h5>
                 </div>
                 <div className="item">
-                  <img src={meter3} alt="skill1" />
+                  <img src={meter1} alt="skill1" />
                   <h5>Dapp Development</h5>
                 </div>
                 <div className="item">
@@ -51,7 +52,7 @@ export const Skills = () => {
                   <h5>C++</h5>
                 </div>
                 <div className="item">
-                  <img src={meter1} alt="skill1" />                     
+                  <img src={meter4} alt="skill1" />                     
                   <h5>Java Script</h5>
                 </div>
                 <div className="item">
@@ -59,11 +60,11 @@ export const Skills = () => {
                   <h5>Bootstrap</h5>
                 </div>
                 <div className="item">
-                  <img src={meter3} alt="skill1" />
+                  <img src={meter2} alt="skill1" />
                   <h5>HTML</h5>
                 </div>
                 <div className="item">
-                  <img src={meter1} alt="skill1" />
+                  <img src={meter2} alt="skill1" />
                   <h5>css</h5>
                   </div>
               </Carousel>

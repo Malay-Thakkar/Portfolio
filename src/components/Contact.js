@@ -42,6 +42,9 @@ export const Contact = () => {
   //     setStatus({ succes: false, message: 'Something went wrong, please try again later.'});
   //   }
   // };
+  const handlesandClick = () => {
+    alert("Somthing went wrong \n Please mail on its.malaythakkar@gmail.com \n or contact Mo:+91 8320135247 \n Thank you ")
+  };
 
   return (
     <section className="contact" id="contect">
@@ -59,23 +62,23 @@ export const Contact = () => {
               {({ isVisible }) =>
                 <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
                 <h2>Get In Touch</h2>
-                <form href="mailto:its.malaythakkar@gmail.com">
+                <form onSubmit={handlesandClick} href="mailto:its.malaythakkar@gmail.com">
                   <Row>
                     <Col size={12} sm={6} className="px-1">
-                      <input type="text"  placeholder="First Name" />
+                      <input type="text"  placeholder="First Name" required/>
                     </Col>
                     <Col size={12} sm={6} className="px-1">
-                      <input type="text" placeholder="Last Name" />
+                      <input type="text" placeholder="Last Name" required/>
                     </Col>
                     <Col size={12} sm={6} className="px-1">
-                      <input type="email"  placeholder="Email Address"  />
+                      <input type="email"  placeholder="Email Address"  required/>
                     </Col>
                     <Col size={12} sm={6} className="px-1">
-                      <input type="tel" placeholder="Phone No." />
+                      <input type="tel" placeholder="Phone No." required/>
                     </Col>
                     <Col size={12} className="px-1">
                       <textarea rows="6"  placeholder="Message" ></textarea>
-                      <button type="submit" onClick={()=>{alert("Somthing went wrong \n Please mail on its.malaythakkar@gmail.com \n or contact Mo:+91 8320135247 \n Thank you ")}}><span>Send</span></button>
+                      <button type="submit"><span>Send</span></button>
                     </Col>
                   </Row>
                 </form>

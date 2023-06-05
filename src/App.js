@@ -12,34 +12,24 @@ import { Testimonial } from './components/Testimonial';
 import { Resume } from './components/Resume';
 
 function App() {
-    return ( <
-        div className = "App" >
-        <
-        div id = "stars" > < /div> <
-        div id = "stars2" > < /div> <
-        div id = "stars2" > < /div> <
-        div id = "stars3" > < /div> <
-        NavBar / >
-        <
-        Banner / >
-        <
-        About / >
-        <
-        Services / >
-        <
-        div id = "stars2" > < /div> <
-        div id = "stars3" > < /div> <
-        Projects / >
-        <
-        Testimonial / >
-        <
-        Contact / >
-        <
-        Resume / >
-        <
-        Footer / >
-        <
-        /div>
+    return (
+        <div className="App" >
+            <div id="stars" />
+            <div id="stars2" />
+            <div id="stars2" />
+            <div id="stars3" />
+            <NavBar />
+            <Banner />
+            <About />
+            <Services />
+            <div id="stars2" />
+            <div id="stars3" />
+            <Projects />
+            <Testimonial />
+            <Contact />
+            <Resume />
+            <Footer />
+        </div>
     );
 }
 

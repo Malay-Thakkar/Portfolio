@@ -45,6 +45,7 @@ body {
     background-color: #121212 !important;
     color: #fff !important;
     font-family: 'Centra', sans-serif !important;
+    padding-left: auto;
 }
 
 h1,
@@ -302,12 +303,16 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 
 .banner h1 {
-    font-size: 65px;
+    font-size: 55 px;
     font-weight: 700;
     letter-spacing: 0.8px;
     line-height: 1;
     margin-bottom: 20px;
     display: block;
+}
+
+.banner h3 {
+    color: aqua;
 }
 
 .banner p {
@@ -325,7 +330,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
     font-size: 20px;
     font-weight: 500;
     padding: 10px 30px;
-    margin-top: 20px;
+    margin-top: 25px;
     border-radius: 30px;
     border: 1px solid violet;
     box-shadow: 1px 2px 15px #AA367C;
@@ -548,6 +553,9 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 
 @media screen and (max-width: 715px) {
+    .services {
+        padding: 80px 0;
+    }
     .services .services-item {
         width: 18rem;
         margin: 2rem;
@@ -564,6 +572,11 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
         text-transform: uppercase;
         font-size: 1.2rem;
         letter-spacing: 2px;
+    }
+    .row {
+        margin: 1rem;
+        padding-left: 0.7rem;
+        align-content: center;
     }
 }
 
@@ -947,12 +960,22 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
     text-decoration: underline;
 }
 
+.testimonial h5 {
+    padding-bottom: 1rem;
+}
+
 .testimonial p {
     color: #B8B8B8;
     font-size: 18px;
+    text-indent: 50px;
+    text-align: justify;
     letter-spacing: 0.8px;
     line-height: 1.5em;
     margin: 14px 0 75px 0;
+    height: inherit;
+    height: 8rem;
+    overflow: auto;
+    scroll-behavior: smooth;
 }
 
 .testimonial-slider {
@@ -962,8 +985,46 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 
 .testimonial-slider .item img {
-    width: 50%;
+    width: 10rem;
     margin: 0 auto 15px auto;
+    border-radius: 50%;
+}
+
+@media screen and (max-width:715px) {
+    .testimonial {
+        padding: 0 0 30px 0;
+        position: relative;
+    }
+    .testimonial-bx {
+        background: #000000;
+        border-radius: 64px;
+        text-align: center;
+        /* padding: 60px 50px; */
+        margin-top: -60px;
+        border: 1px solid violet;
+        box-shadow: 1px 2px 15px #AA367C;
+    }
+    .testimonial h2 {
+        font-size: 45px;
+        padding-bottom: 20px;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+    .testimonial p {
+        color: #B8B8B8;
+        font-size: 18px;
+        letter-spacing: 0.8px;
+        /* margin: 14px 0 75px 0; */
+    }
+    .testimonial-slider {
+        width: 80%;
+        margin: 0 auto;
+        position: relative;
+    }
+    .testimonial-slider .item img {
+        width: 50%;
+        /* margin: 0 auto 15px auto; */
+    }
 }
 
 .background-image-left {

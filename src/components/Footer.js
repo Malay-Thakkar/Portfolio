@@ -9,12 +9,13 @@ export const Footer = () => {
     <footer className="footer">
         <Row style={{ textAlign: "center" }}>
         <h1 style={{ color: "white" }}>Follow On</h1>
-        <div className="social-icon">
+        <div className="social-icon pb-3">
               <a href="https://www.linkedin.com/in/malay-thakkar/"><img src={navIcon1} alt="Icon" /></a>
               <a href="https://github.com/Malay-Thakkar"><img src={navIcon2} alt="Icon" /></a>
               <a href="https://www.instagram.com/thakkar_malay/"><img src={navIcon3} alt="Icon" /></a>
             </div>
-
+        
+        {/* <hr/> */}
          <p>Address:Vadnagar, Mehsana, Gujrat <br/>
          contact no.:+91 8320135247<br/>
          Mail id: its.malaythakkar@gmail.com
