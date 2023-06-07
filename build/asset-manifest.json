@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.2dc9c429.css",
-    "main.js": "/static/js/main.dcea0313.js",
+    "main.css": "/static/css/main.1de18d36.css",
+    "main.js": "/static/js/main.82aa44b5.js",
     "static/js/787.1ed0c42c.chunk.js": "/static/js/787.1ed0c42c.chunk.js",
     "static/media/portfolio_pngfile_2.png": "/static/media/portfolio_pngfile_2.0e6631289c7dc8bec2d1.png",
     "static/media/color-sharp.png": "/static/media/color-sharp.bea361cfef80fefc2d1e.png",
@@ -9,7 +9,7 @@
     "static/media/color-sharp2.png": "/static/media/color-sharp2.c87586c6c2f549cb4aa6.png",
     "static/media/p4.jpg": "/static/media/p4.8540ff46c8cb10c55ae6.jpg",
     "static/media/Inter-Black.ttf": "/static/media/Inter-Black.143c28420846d45c5834.ttf",
-    "static/media/Malay_Thakkar_Resume.pdf": "/static/media/Malay_Thakkar_Resume.386c015e3ba33e195fa5.pdf",
+    "static/media/Malay_Thakkar_Resume.pdf": "/static/media/Malay_Thakkar_Resume.c737e71a40580ac4ec01.pdf",
     "static/media/p2.jpg": "/static/media/p2.02681977dba62d8e9787.jpg",
     "static/media/p1.png": "/static/media/p1.8db28d0c0caa094ba4c8.png",
     "static/media/p5.jpg": "/static/media/p5.4152e3ac534b57161245.jpg",
@@ -31,12 +31,12 @@
     "static/media/nav-icon1.svg": "/static/media/nav-icon1.721d5414c26365f117e71d46b6641cb2.svg",
     "index.html": "/index.html",
     "static/media/browser-chrome.svg": "/static/media/browser-chrome.47c940dc020d35e0aee1b857c8adc5d8.svg",
-    "main.2dc9c429.css.map": "/static/css/main.2dc9c429.css.map",
-    "main.dcea0313.js.map": "/static/js/main.dcea0313.js.map",
+    "main.1de18d36.css.map": "/static/css/main.1de18d36.css.map",
+    "main.82aa44b5.js.map": "/static/js/main.82aa44b5.js.map",
     "787.1ed0c42c.chunk.js.map": "/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2dc9c429.css",
-    "static/js/main.dcea0313.js"
+    "static/css/main.1de18d36.css",
+    "static/js/main.82aa44b5.js"
   ]
 }

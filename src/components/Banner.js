@@ -19,12 +19,12 @@ export const Banner = () => {
               {({ isVisible }) =>
                 <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
                   <span className="tagline">Welcome to my Portfolio</span>
-                  <h1>Hello, I'm<br />Malay Thakkar</h1>
-                  <h2>and I'm</h2>
+                  <h1>Hello,<h1 style={{color:"aqua", display:"inline"}}>I'm</h1><br />Malay Thakkar</h1>
+                  <h2>and I'm </h2>
                   <h3> 
                   <Typewriter className="typetext"
                     options={{
-                      strings: ['Full Stack Devloper', 'DAPP Devloper','UI/UX Designer','Smart contract Devloper',],
+                      strings: ['Full Stack Developer', 'DAPP Developer','UI/UX Designer','Smart contract Developer',],
                       autoStart: true,
                       loop: true,
                       delay:40,

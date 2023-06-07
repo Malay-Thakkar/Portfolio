@@ -8,7 +8,7 @@ export const About = () => {
                 <Container>
                     <Row>
                         <h2>About Me</h2>
-                        <h4 style={{ paddingBottom: "5rem" }}>I am a sixth-semester computer engineering student at Ganpat University. I have experience in HTML, CSS, JavaScript, and Node.js for server-side development. I am familiar with front-end frameworks like React and back-end frameworks like Express. I can solve complex problems and troubleshoot technical issues, and I know version control systems like Git and GitHub.
+                        <h4 style={{ paddingBottom: "5rem" }}>I am a seven-semester computer engineering student at Ganpat University. I have experience in HTML, CSS, JavaScript, and Node.js for server-side development. I am familiar with front-end frameworks like React and back-end frameworks like Express. I can solve complex problems and troubleshoot technical issues, and I know version control systems like Git and GitHub.
                         </h4>
                     </Row>
 
@@ -37,14 +37,20 @@ export const About = () => {
                         </div>
 
                         <div style={{ paddingTop: "3rem" }}>
-                            <h3 style={{ color: "hsl(57, 86%, 81%)" }}>Blockchain, COURSERA, (SPECIALIZATION)</h3>
+                            <h3 style={{ color: "hsl(57, 86%, 81%)" }}>BLOCKCHAIN, COURSERA, (SPECIALIZATION)</h3>
                                 <p style={{color:"ivory"}}>Skills: Smart Contract, Ethereum, Blockchains, Solidity</p> 
                                 <p>Link: <a href="https://coursera.org/share/a0eeee605080c747b1a86de806ea9484">Credential</a></p>
                         </div>
 
                         <div style={{ paddingTop: "3rem" }}>
+                            <h3 style={{ color: "hsl(57, 86%, 81%)" }}>SERVER-SIDE DEVELOPMENT WITH NODEJS, EXPRESS AND MONGODB</h3>
+                                <p style={{color:"ivory"}}>Skills: Authentication, Node.Js, Mongodb, Express.Js</p> 
+                                <p>Link: <a href="https://coursera.org/share/4e509ab68b1a2cd0ab573200ef313436">Credential</a></p>
+                        </div>
+
+                        <div style={{ paddingTop: "3rem" }}>
                             <h3 style={{ color: "hsl(57, 86%, 81%)" }}>PROGRAMMING FUNDAMENTALS, COURSERA</h3>
-                                <p style={{color:"ivory"}}>Skills: -Algorithms, Programming Language Concepts, Problem Solving, C Programming</p> 
+                                <p style={{color:"ivory"}}>Skills: Algorithms, Programming Language Concepts, Problem Solving, C Programming</p> 
                                 <p>Link: <a href="https://coursera.org/share/376fc4389f30046e587668295d0ae630">Credential</a></p>
                         </div>
                     </Row >
