@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Variables ─────────────────────────────── */
+:root {
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f7f6f3;
+  --color-bg-tertiary: #f0eeea;
+  --color-text-primary: #1a1916;
+  --color-text-secondary: #6b6962;
+  --color-border-primary: #e0ddd8;
+  --color-border-secondary: #ccc9c3;
+  --color-accent: #534AB7;
+  --color-accent-bg: #EEEDFE;
+  --color-accent-text: #3C3489;
+}
+
+.dark {
+  --color-bg-primary: #111110;
+  --color-bg-secondary: #1a1916;
+  --color-bg-tertiary: #242320;
+  --color-text-primary: #f5f4f0;
+  --color-text-secondary: #9b9890;
+  --color-border-primary: #2e2d29;
+  --color-border-secondary: #3a3935;
+  --color-accent: #7b74e0;
+  --color-accent-bg: #1e1b3a;
+  --color-accent-text: #a39ef5;
+}
+
+/* ─── Base ──────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 18px; /* All Tailwind rem values scale from here */
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ─── Tag Colors ────────────────────────────────── */
+@layer components {
+  .tag {
+    @apply inline-block text-sm px-3 py-1 rounded-full font-medium;
+  }
+  .tag-purple { background: #EEEDFE; color: #3C3489; }
+  .tag-teal   { background: #E1F5EE; color: #085041; }
+  .tag-amber  { background: #FAEEDA; color: #633806; }
+  .tag-coral  { background: #FAECE7; color: #712B13; }
+  .tag-gray   { background: #F1EFE8; color: #444441; }
+
+  .dark .tag-purple { background: #1e1b3a; color: #a39ef5; }
+  .dark .tag-teal   { background: #0e2420; color: #5ecfad; }
+  .dark .tag-amber  { background: #271a08; color: #e8a855; }
+  .dark .tag-coral  { background: #2a1008; color: #e87c5c; }
+  .dark .tag-gray   { background: #22211e; color: #9b9890; }
+
+  .badge-purple { background: #EEEDFE; color: #3C3489; }
+  .badge-teal   { background: #E1F5EE; color: #085041; }
+  .badge-amber  { background: #FAEEDA; color: #633806; }
+  .badge-coral  { background: #FAECE7; color: #712B13; }
+  .badge-gray   { background: #F1EFE8; color: #444441; }
+
+  .dark .badge-purple { background: #1e1b3a; color: #a39ef5; }
+  .dark .badge-teal   { background: #0e2420; color: #5ecfad; }
+  .dark .badge-amber  { background: #271a08; color: #e8a855; }
+  .dark .badge-coral  { background: #2a1008; color: #e87c5c; }
+  .dark .badge-gray   { background: #22211e; color: #9b9890; }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl text-base font-semibold text-white cursor-pointer border-0 transition-opacity duration-150;
+    background-color: var(--color-accent);
+  }
+  .btn-primary:hover { opacity: 0.88; }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl text-base font-semibold cursor-pointer transition-colors duration-150;
+    background: transparent;
+    color: var(--color-text-primary);
+    border: 0.5px solid var(--color-border-secondary);
+  }
+  .btn-outline:hover { background-color: var(--color-bg-secondary); }
+
+  .section-label {
+    @apply text-sm font-bold uppercase tracking-widest mb-7;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.12em;
+  }
+
+  .card {
+    border-radius: 16px;
+    border: 0.5px solid var(--color-border-primary);
+    background: var(--color-bg-primary);
+  }
+
+  .card-secondary {
+    border-radius: 12px;
+    background: var(--color-bg-secondary);
+  }
+}
+
+/* ─── Scrollbar ─────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-secondary);
+  border-radius: 3px;
+}
+
+/* ─── Form inputs ───────────────────────────────── */
+input, textarea {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  border: 0.5px solid var(--color-border-secondary);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+  width: 100%;
+  padding: 13px 16px;
+}
+input:focus, textarea:focus { border-color: var(--color-accent); }
+input::placeholder, textarea::placeholder { color: var(--color-text-secondary); }
+textarea { resize: none; }
