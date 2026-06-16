@@ -20,8 +20,9 @@ const cardVariants = {
 function ProjectCard({ project, onOpen }) {
   return (
     <div
-      className="card p-6 flex flex-col h-full"
+      className={`card p-6 flex flex-col h-full ${project.hasModal && onOpen ? 'cursor-pointer' : ''}`}
       style={project.featured ? { border: '1.5px solid var(--color-accent)' } : {}}
+      onClick={() => project.hasModal && onOpen && onOpen(project)}
     >
       <div className="flex items-start justify-between mb-2.5">
         <h3 className="text-base font-semibold leading-snug" style={{ color: 'var(--color-text-primary)' }}>
@@ -45,13 +46,12 @@ function ProjectCard({ project, onOpen }) {
           ))}
         </div>
         {project.hasModal && onOpen && (
-          <button
-            onClick={() => onOpen(project)}
-            className="text-sm font-medium bg-transparent border-0 cursor-pointer transition-opacity hover:opacity-70 flex-shrink-0"
+          <span
+            className="text-sm font-medium transition-opacity hover:opacity-70 flex-shrink-0"
             style={{ color: 'var(--color-accent)' }}
           >
             Details →
-          </button>
+          </span>
         )}
       </div>
     </div>
@@ -108,7 +108,7 @@ export default function AllProjects() {
         </div>
 
         <Section title="Featured projects" projects={PROJECTS} onOpen={setActiveProject} />
-        <Section title="Other projects" projects={ADDITIONAL_PROJECTS} onOpen={null} />
+        <Section title="Other projects" projects={ADDITIONAL_PROJECTS} onOpen={setActiveProject} />
       </div>
 
       {activeProject && (

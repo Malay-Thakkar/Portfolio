@@ -4,7 +4,7 @@ import { motion, useInView } from 'framer-motion';
 const STATS = [
   { num: '2 yrs', label: 'Experience', isText: true },
   { num: 195000, label: 'Users served', suffix: 'K+', divisor: 1000 },
-  { num: 3, label: 'Production projects', isText: false },
+  { num: 5, label: 'Production projects', isText: false },
   { num: 'RAG', label: 'AI pipelines built', isText: true },
 ];
 
@@ -45,7 +45,7 @@ export default function Stats() {
         {STATS.map((stat) => (
           <div
             key={stat.label}
-            className="card-secondary rounded-xl px-5 py-5 text-center"
+            className="stat-card card-secondary rounded-xl px-5 py-5 text-center"
           >
             <div
               className="text-3xl font-semibold mb-1.5"

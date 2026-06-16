@@ -1,5 +1,14 @@
 import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
+// import { Turnstile } from '@marsidev/react-turnstile'; // TODO: enable after registering domain
+
+// TODO: Uncomment and configure Cloudflare Turnstile once domain is registered
+// Steps:
+//   1. Go to https://dash.cloudflare.com/?to=/:account/turnstile → create a widget for your domain
+//   2. Set VITE_TURNSTILE_SITE_KEY in .env / Netlify env vars
+//   3. Paste the Secret Key in Formspree → Settings → CAPTCHA → Cloudflare Turnstile
+//   4. Uncomment the Turnstile import, state, widget JSX, and captchaToken check below
+// const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY;
 
 const CONTACT_INFO = [
   {
@@ -49,27 +58,58 @@ const CONTACT_INFO = [
   },
 ];
 
+// Rate-limit: one submission every 60 seconds
+const RATE_LIMIT_MS = 60_000;
+
 export default function Contact() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-60px' });
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', message: '', _gotcha: '' });
   const [status, setStatus] = useState(null);
+  const [lastSentAt, setLastSentAt] = useState(null);
+  const [cooldown, setCooldown] = useState(0);
+  // const [captchaToken, setCaptchaToken] = useState(null); // TODO: re-enable with Turnstile
+  // const turnstileRef = useRef(null);                      // TODO: re-enable with Turnstile
 
   const handleChange = (e) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Honeypot — bots fill this hidden field
+    if (form._gotcha) return;
+
+    // TODO: re-enable when Turnstile is configured
+    // if (!captchaToken) { setStatus('no-captcha'); return; }
+
+    // Client-side rate limit
+    if (lastSentAt && Date.now() - lastSentAt < RATE_LIMIT_MS) {
+      const remaining = Math.ceil((RATE_LIMIT_MS - (Date.now() - lastSentAt)) / 1000);
+      setCooldown(remaining);
+      setStatus('rate-limited');
+      return;
+    }
+
+    // Minimum message length
+    if (form.message.trim().length < 10) {
+      setStatus('short-message');
+      return;
+    }
+
     setStatus('sending');
     try {
+      const { _gotcha: _hp, ...payload } = form;
       const res = await fetch('https://formspree.io/f/mjgdjpqg', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+        // TODO: add 'cf-turnstile-response': captchaToken when Turnstile is enabled
       });
       if (res.ok) {
         setStatus('success');
-        setForm({ name: '', email: '', message: '' });
+        setLastSentAt(Date.now());
+        setForm({ name: '', email: '', message: '', _gotcha: '' });
       } else {
         setStatus('error');
       }
@@ -95,6 +135,18 @@ export default function Contact() {
       >
         {/* Form */}
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+          {/* Honeypot — hidden from humans, bots fill it automatically */}
+          <input
+            type="text"
+            name="_gotcha"
+            value={form._gotcha}
+            onChange={handleChange}
+            style={{ display: 'none' }}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
+
           <input
             name="name"
             value={form.name}
@@ -122,8 +174,23 @@ export default function Contact() {
             id="contact-message"
           />
 
+          {/* TODO: Uncomment Turnstile widget after domain setup
+          <Turnstile
+            ref={turnstileRef}
+            siteKey={TURNSTILE_SITE_KEY}
+            onSuccess={(token) => { setCaptchaToken(token); if (status === 'no-captcha') setStatus(null); }}
+            onExpire={() => setCaptchaToken(null)}
+            onError={() => setCaptchaToken(null)}
+            options={{ theme: 'auto' }}
+          />
+          */}
+
           <div className="flex items-center gap-4 flex-wrap">
-            <button type="submit" className="btn-primary" disabled={status === 'sending'}>
+            <button
+              type="submit"
+              className="btn-primary"
+              disabled={status === 'sending'}
+            >
               {status === 'sending' ? 'Sending…' : 'Send message'}
             </button>
             {status === 'success' && (
@@ -131,6 +198,14 @@ export default function Contact() {
             )}
             {status === 'error' && (
               <span className="text-sm text-red-500">Something went wrong. Try again.</span>
+            )}
+            {status === 'rate-limited' && (
+              <span className="text-sm text-amber-500">
+                Please wait {cooldown}s before sending again.
+              </span>
+            )}
+            {status === 'short-message' && (
+              <span className="text-sm text-red-500">Message is too short (min 10 chars).</span>
             )}
           </div>
         </form>

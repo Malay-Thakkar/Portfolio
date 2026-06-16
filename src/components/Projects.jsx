@@ -42,8 +42,9 @@ export default function Projects() {
             key={project.id}
             variants={cardVariants}
             transition={{ duration: 0.45 }}
-            className={`card p-6 flex flex-col ${project.fullWidth ? 'md:col-span-2' : ''}`}
+            className={`card p-6 flex flex-col cursor-pointer ${project.fullWidth ? 'md:col-span-2' : ''}`}
             style={project.featured ? { border: '1.5px solid var(--color-accent)' } : {}}
+            onClick={() => setActiveProject(project)}
           >
             <div className="flex items-start justify-between mb-2">
               <h3
@@ -72,13 +73,12 @@ export default function Projects() {
                   </span>
                 ))}
               </div>
-              <button
-                onClick={() => setActiveProject(project)}
-                className="text-sm font-medium bg-transparent border-0 cursor-pointer transition-opacity hover:opacity-70"
+              <span
+                className="text-sm font-medium transition-opacity hover:opacity-70"
                 style={{ color: 'var(--color-accent)' }}
               >
                 Details →
-              </button>
+              </span>
             </div>
           </motion.div>
         ))}

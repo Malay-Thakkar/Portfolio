@@ -54,10 +54,10 @@ export const TIMELINE = [
   {
     id: 6,
     date: 'Feb 2023 – 3rd year',
-    title: 'Blockchain-based project',
+    title: 'Ethereum Voting DApp',
     description:
-      'Built blockchain project for academic coursework — distributed systems and cryptography.',
-    badge: 'College project',
+      'Developed a blockchain-based e-voting system using Ethereum and Solidity, enabling secure, transparent, and tamper-proof elections with remote voting and double-vote prevention.',
+    badge: 'Research project',
     badgeColor: 'gray',
     dotColor: 'gray',
   },
@@ -65,7 +65,7 @@ export const TIMELINE = [
     id: 7,
     date: 'Sep 2020',
     title: 'Started B.Tech — Computer Engineering',
-    description: 'U. V. Patel College of Engineering, Mehsana, Gujarat',
+    description: 'U. V. Patel College of Engineering, Mehsana, Gujarat — (Ganpat University (GUNI))',
     badge: 'Education',
     badgeColor: 'gray',
     dotColor: 'gray',

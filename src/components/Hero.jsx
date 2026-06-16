@@ -65,7 +65,7 @@ export default function Hero() {
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center gap-3 order-first md:order-last"
         >
-          <div className="rounded-full overflow-hidden" style={{ width: 300, height: 300 }}>
+          <div className="rounded-full overflow-hidden" style={{ width: 367, height: 370 }}>
             <img
               src="/portfolio_pngfile_2.png"
               className="w-full h-full object-cover"
