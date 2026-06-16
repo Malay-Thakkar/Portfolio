@@ -1,14 +1,29 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, Component } from 'react';
 import { motion, useInView } from 'framer-motion';
-// import { Turnstile } from '@marsidev/react-turnstile'; // TODO: enable after registering domain
+import { Turnstile } from '@marsidev/react-turnstile';
 
-// TODO: Uncomment and configure Cloudflare Turnstile once domain is registered
-// Steps:
-//   1. Go to https://dash.cloudflare.com/?to=/:account/turnstile → create a widget for your domain
-//   2. Set VITE_TURNSTILE_SITE_KEY in .env / Netlify env vars
-//   3. Paste the Secret Key in Formspree → Settings → CAPTCHA → Cloudflare Turnstile
-//   4. Uncomment the Turnstile import, state, widget JSX, and captchaToken check below
-// const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY;
+// Error boundary so Turnstile failures don't crash the whole form
+class TurnstileErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  render() {
+    if (this.state.hasError) {
+      // On error (e.g. localhost), call onSuccess with a dev bypass token
+      this.props.onDevBypass?.();
+      return (
+        <p className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>
+          CAPTCHA unavailable on this environment.
+        </p>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 const CONTACT_INFO = [
   {
@@ -61,6 +76,13 @@ const CONTACT_INFO = [
 // Rate-limit: one submission every 60 seconds
 const RATE_LIMIT_MS = 60_000;
 
+// Cloudflare Turnstile site key
+// Set VITE_TURNSTILE_SITE_KEY in your .env file with your real key from:
+// https://dash.cloudflare.com/?to=/:account/turnstile
+// '1x00000000000000000000AA' is the Cloudflare always-pass test key (dev only)
+const TURNSTILE_SITE_KEY =
+  import.meta.env.VITE_TURNSTILE_SITE_KEY || '1x00000000000000000000AA';
+
 export default function Contact() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-60px' });
@@ -68,11 +90,16 @@ export default function Contact() {
   const [status, setStatus] = useState(null);
   const [lastSentAt, setLastSentAt] = useState(null);
   const [cooldown, setCooldown] = useState(0);
-  // const [captchaToken, setCaptchaToken] = useState(null); // TODO: re-enable with Turnstile
-  // const turnstileRef = useRef(null);                      // TODO: re-enable with Turnstile
+  const [captchaToken, setCaptchaToken] = useState(null);
+  const turnstileRef = useRef(null);
 
   const handleChange = (e) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+
+  const resetCaptcha = () => {
+    setCaptchaToken(null);
+    if (turnstileRef.current) turnstileRef.current.reset();
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -80,8 +107,11 @@ export default function Contact() {
     // Honeypot — bots fill this hidden field
     if (form._gotcha) return;
 
-    // TODO: re-enable when Turnstile is configured
-    // if (!captchaToken) { setStatus('no-captcha'); return; }
+    // CAPTCHA must be passed
+    if (!captchaToken) {
+      setStatus('no-captcha');
+      return;
+    }
 
     // Client-side rate limit
     if (lastSentAt && Date.now() - lastSentAt < RATE_LIMIT_MS) {
@@ -103,18 +133,20 @@ export default function Contact() {
       const res = await fetch('https://formspree.io/f/mjgdjpqg', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(payload),
-        // TODO: add 'cf-turnstile-response': captchaToken when Turnstile is enabled
+        body: JSON.stringify({ ...payload, 'cf-turnstile-response': captchaToken }),
       });
       if (res.ok) {
         setStatus('success');
         setLastSentAt(Date.now());
         setForm({ name: '', email: '', message: '', _gotcha: '' });
+        resetCaptcha();
       } else {
         setStatus('error');
+        resetCaptcha();
       }
     } catch {
       setStatus('error');
+      resetCaptcha();
     }
   };
 
@@ -174,22 +206,26 @@ export default function Contact() {
             id="contact-message"
           />
 
-          {/* TODO: Uncomment Turnstile widget after domain setup
-          <Turnstile
-            ref={turnstileRef}
-            siteKey={TURNSTILE_SITE_KEY}
-            onSuccess={(token) => { setCaptchaToken(token); if (status === 'no-captcha') setStatus(null); }}
-            onExpire={() => setCaptchaToken(null)}
-            onError={() => setCaptchaToken(null)}
-            options={{ theme: 'auto' }}
-          />
-          */}
+          {/* Cloudflare Turnstile CAPTCHA widget */}
+          <TurnstileErrorBoundary onDevBypass={() => setCaptchaToken('dev-bypass')}>
+            <Turnstile
+              ref={turnstileRef}
+              siteKey={TURNSTILE_SITE_KEY}
+              onSuccess={(token) => {
+                setCaptchaToken(token);
+                if (status === 'no-captcha') setStatus(null);
+              }}
+              onExpire={() => setCaptchaToken(null)}
+              onError={() => setCaptchaToken(null)}
+              options={{ theme: 'auto' }}
+            />
+          </TurnstileErrorBoundary>
 
           <div className="flex items-center gap-4 flex-wrap">
             <button
               type="submit"
               className="btn-primary"
-              disabled={status === 'sending'}
+              disabled={status === 'sending' || !captchaToken}
             >
               {status === 'sending' ? 'Sending…' : 'Send message'}
             </button>
@@ -207,13 +243,16 @@ export default function Contact() {
             {status === 'short-message' && (
               <span className="text-sm text-red-500">Message is too short (min 10 chars).</span>
             )}
+            {status === 'no-captcha' && (
+              <span className="text-sm text-amber-500">Please complete the CAPTCHA first.</span>
+            )}
           </div>
         </form>
 
         {/* Contact info */}
         <div className="flex flex-col gap-5">
           {CONTACT_INFO.map((item) => (
-            <div key={item.id} className="flex items-center gap-5">
+            <div key={item.id} className="flex items-center gap-3.5">
               <div
                 className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
                 style={{ background: 'var(--color-accent-bg)', color: 'var(--color-accent)' }}
