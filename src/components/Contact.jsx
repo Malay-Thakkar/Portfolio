@@ -211,9 +211,9 @@ export default function Contact() {
         </form>
 
         {/* Contact info */}
-        <div className="flex flex-col gap-5 justify-center">
+        <div className="flex flex-col gap-5">
           {CONTACT_INFO.map((item) => (
-            <div key={item.id} className="flex items-center gap-3.5">
+            <div key={item.id} className="flex items-center gap-5">
               <div
                 className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
                 style={{ background: 'var(--color-accent-bg)', color: 'var(--color-accent)' }}
