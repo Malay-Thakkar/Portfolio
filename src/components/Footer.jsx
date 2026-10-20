@@ -1,7 +1,10 @@
+import { SOCIAL_PROFILES } from '../data/seo';
+import { trackEvent } from '../analytics';
+
 const SOCIAL = [
   {
     id: 'github',
-    href: 'https://github.com/Malay-Thakkar',
+    href: SOCIAL_PROFILES.github,
     label: 'GitHub',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -12,7 +15,7 @@ const SOCIAL = [
   },
   {
     id: 'linkedin',
-    href: 'https://linkedin.com/in/malay-thakkar',
+    href: SOCIAL_PROFILES.linkedin,
     label: 'LinkedIn',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -23,8 +26,20 @@ const SOCIAL = [
     ),
   },
   {
+    id: 'instagram',
+    href: SOCIAL_PROFILES.instagram,
+    label: 'Instagram',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="18" cy="6" r="0.8" fill="currentColor" stroke="none" />
+      </svg>
+    ),
+  },
+  {
     id: 'portfolio',
-    href: '#',
+    href: 'https://malaythakkar.dev/',
     label: 'Portfolio',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -51,7 +66,12 @@ export default function Footer() {
             key={s.id}
             href={s.href}
             target="_blank"
-            rel="noreferrer"
+            rel="me noopener noreferrer"
+            onClick={() => {
+              if (s.id !== 'portfolio') {
+                trackEvent('social_profile_click', { platform: s.id });
+              }
+            }}
             aria-label={s.label}
             className="transition-opacity hover:opacity-60"
             style={{ color: 'var(--color-text-secondary)' }}

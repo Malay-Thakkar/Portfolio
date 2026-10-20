@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 405" role="img" aria-labelledby="title description">
+  <title id="title">StrongSwan VPN illustration</title>
+  <desc id="description">An abstract illustration of two secure networks connected by an encrypted tunnel.</desc>
+  <rect width="720" height="405" fill="#151b2a"/>
+  <circle cx="358" cy="205" r="135" fill="#534ab7" opacity=".2"/>
+  <g fill="none" stroke="#a39ef5" stroke-width="4">
+    <path d="M231 203h258" stroke-dasharray="10 12"/>
+    <rect x="94" y="135" width="136" height="136" rx="20"/>
+    <rect x="490" y="135" width="136" height="136" rx="20"/>
+  </g>
+  <g fill="#a39ef5">
+    <path d="M150 208v-20a12 12 0 0 1 24 0v20h10v32h-44v-32zm5 0h14v-20a7 7 0 0 0-14 0z"/>
+    <path d="M532 208v-20a12 12 0 0 1 24 0v20h10v32h-44v-32zm5 0h14v-20a7 7 0 0 0-14 0z"/>
+  </g>
+  <text x="360" y="330" fill="#fff" font-family="system-ui, sans-serif" font-size="25" font-weight="600" text-anchor="middle">StrongSwan · IPSec VPN</text>
+</svg>

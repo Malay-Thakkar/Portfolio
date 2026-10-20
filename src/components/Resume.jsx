@@ -1,3 +1,5 @@
+import { trackEvent } from '../analytics';
+
 export default function Resume() {
   return (
     <section
@@ -10,7 +12,12 @@ export default function Resume() {
     >
       <div className="max-w-[1100px] mx-auto px-6 flex items-center justify-between mb-5">
         <p className="section-label mb-0">My Resume</p>
-        <a href="/resume.pdf" download className="btn-outline">
+        <a
+          href="/resume.pdf"
+          download
+          className="btn-outline"
+          onClick={() => trackEvent('resume_download', { location: 'resume_section' })}
+        >
           Download PDF
         </a>
       </div>
@@ -28,7 +35,12 @@ export default function Resume() {
       </div>
 
       <div className="flex justify-center mt-6">
-        <a href="/resume.pdf" download className="btn-primary">
+        <a
+          href="/resume.pdf"
+          download
+          className="btn-primary"
+          onClick={() => trackEvent('resume_download', { location: 'resume_section' })}
+        >
           Download Resume
         </a>
       </div>

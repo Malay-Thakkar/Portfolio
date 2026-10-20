@@ -41,6 +41,12 @@ html {
   font-size: 18px; /* All Tailwind rem values scale from here */
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   font-family: 'Inter', system-ui, sans-serif;
   background-color: var(--color-bg-primary);

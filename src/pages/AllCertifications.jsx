@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { CERTIFICATIONS } from '../data/certifications';
 import { CertIcon } from '../components/CertIcon';
+import PageSEO from '../components/PageSEO';
 
 const BADGE_CLASS = {
   purple: 'badge-purple',
@@ -99,6 +100,7 @@ function Section({ certs }) {
 export default function AllCertifications() {
   return (
     <div style={{ background: 'var(--color-bg-primary)', minHeight: '100vh' }}>
+      <PageSEO />
       <div className="max-w-[1100px] mx-auto px-6 pt-12 pb-16">
         <Link
           to="/"

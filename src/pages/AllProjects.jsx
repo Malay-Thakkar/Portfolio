@@ -1,8 +1,10 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { PROJECTS, ADDITIONAL_PROJECTS } from '../data/projects';
 import ProjectModal from '../components/ProjectModal';
+import PageSEO from '../components/PageSEO';
+import { trackEvent } from '../analytics';
 
 const TAG_CLASS = {
   purple: 'tag-purple',
@@ -22,8 +24,25 @@ function ProjectCard({ project, onOpen }) {
     <div
       className={`card p-6 flex flex-col h-full ${project.hasModal && onOpen ? 'cursor-pointer' : ''}`}
       style={project.featured ? { border: '1.5px solid var(--color-accent)' } : {}}
-      onClick={() => project.hasModal && onOpen && onOpen(project)}
+      onClick={() => {
+        if (project.hasModal && onOpen) {
+          trackEvent('view_project_details', { project_id: project.id });
+          onOpen(project);
+        }
+      }}
     >
+      <div className="-mx-6 -mt-6 mb-4 aspect-video overflow-hidden rounded-t-[15px] bg-[var(--color-bg-secondary)]">
+        <img
+          src={project.coverImage}
+          alt={project.coverAlt}
+          className="h-full w-full object-cover"
+          width="720"
+          height="405"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
       <div className="flex items-start justify-between mb-2.5">
         <h3 className="text-base font-semibold leading-snug" style={{ color: 'var(--color-text-primary)' }}>
           {project.name}
@@ -59,17 +78,13 @@ function ProjectCard({ project, onOpen }) {
 }
 
 function Section({ title, projects, onOpen }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-60px' });
-
   return (
     <div className="mb-12">
       <p className="section-label">{title}</p>
       <motion.div
-        ref={ref}
         variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
-        initial="hidden"
-        animate={inView ? 'show' : 'hidden'}
+        initial={false}
+        animate="show"
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch"
       >
         {projects.map((p) => (
@@ -89,6 +104,7 @@ export default function AllProjects() {
 
   return (
     <div style={{ background: 'var(--color-bg-primary)', minHeight: '100vh' }}>
+      <PageSEO />
       <div className="max-w-[1100px] mx-auto px-6 pt-12 pb-16">
         <Link
           to="/"

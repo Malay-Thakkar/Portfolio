@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 405" role="img" aria-labelledby="title description">
+  <title id="title">RISE learning platform illustration</title>
+  <desc id="description">An abstract illustration of connected learning modules.</desc>
+  <rect width="720" height="405" fill="#101b35"/>
+  <circle cx="586" cy="77" r="112" fill="#534ab7" opacity=".38"/>
+  <circle cx="112" cy="350" r="150" fill="#287b82" opacity=".26"/>
+  <g fill="none" stroke="#a39ef5" stroke-width="3" opacity=".8">
+    <path d="M228 199h116m32 0h116M286 141v116m180-116v116"/>
+    <path d="m310 157 34 34m32 16 34 34m-100 8 34-34m68-58-34 34"/>
+  </g>
+  <g fill="#202b4a" stroke="#a39ef5" stroke-width="3">
+    <rect x="160" y="139" width="82" height="120" rx="16"/>
+    <rect x="319" y="139" width="82" height="120" rx="16"/>
+    <rect x="478" y="139" width="82" height="120" rx="16"/>
+  </g>
+  <g fill="#a39ef5">
+    <circle cx="201" cy="174" r="13"/>
+    <path d="M181 215h40m-40 14h28"/>
+    <circle cx="360" cy="174" r="13"/>
+    <path d="M340 215h40m-40 14h28"/>
+    <circle cx="519" cy="174" r="13"/>
+    <path d="M499 215h40m-40 14h28"/>
+  </g>
+  <text x="360" y="330" fill="#fff" font-family="system-ui, sans-serif" font-size="26" font-weight="600" text-anchor="middle">RISE · Learning platform</text>
+</svg>

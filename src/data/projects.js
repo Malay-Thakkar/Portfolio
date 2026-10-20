@@ -5,6 +5,8 @@ export const PROJECTS = [
   {
     id: 'webwhisper',
     name: 'WebWhisper',
+    coverImage: '/project-thumbnails/webwhisper.webp',
+    coverAlt: 'WebWhisper website chatbot landing page',
     subtitle: 'BYOK RAG conversational platform',
     description:
       'A full-stack BYOK conversational AI platform where users configure their own OpenAI or Gemini keys. Supports web scraping, document uploads, and a complete RAG pipeline with guardrails and voice chat.',
@@ -33,7 +35,7 @@ export const PROJECTS = [
     featured: false,
     hasModal: true,
     // github: '#',
-    live: null,
+    live: 'https://webwhisper.malaythakkar.dev/',
     gallery: [
       { src: '/webwhisper/1_index.png', label: 'Home Page' },
       { src: '/webwhisper/2_index.png', label: 'Landing Page Overview' },
@@ -54,6 +56,8 @@ export const PROJECTS = [
   {
     id: 'photoshare',
     name: 'PhotoShare',
+    coverImage: '/project-thumbnails/photoshare.webp',
+    coverAlt: 'PhotoShare photo gallery application',
     subtitle: 'Face-recognition PWA with Google Drive sync',
     description:
       'Face-recognition PWA with Google Drive sync, permission-based photo sharing via unique request codes, and automated face-based photo assignment.',
@@ -99,6 +103,8 @@ export const PROJECTS = [
   {
     id: 'psthakkar',
     name: 'PS Thakkar E-Commerce',
+    coverImage: '/project-thumbnails/ecommerce.webp',
+    coverAlt: 'PS Thakkar e-commerce product catalog',
     subtitle: 'Dockerized Django e-commerce with Rasa chatbot',
     description:
       'Dockerized Django e-commerce platform with full cart, order, wishlist, and purchase history. Integrated Rasa chatbot for customer support.',
@@ -140,6 +146,8 @@ export const ADDITIONAL_PROJECTS = [
   {
     id: 'rise',
     name: 'RISE',
+    coverImage: '/project-thumbnails/rise.svg',
+    coverAlt: 'Illustration for the RISE learning platform',
     subtitle: 'Rapid Immunization Skills Enhancement Platform',
     description:
       'National-scale immunization training platform built on Open edX. Contributed to backend development, analytics, automation, and user management while supporting 195,000+ healthcare professionals across India.',
@@ -170,6 +178,8 @@ export const ADDITIONAL_PROJECTS = [
   {
     id: 'ethereum-voting-dapp',
     name: 'Ethereum Voting DApp',
+    coverImage: '/project-thumbnails/voting.webp',
+    coverAlt: 'Ethereum voting application interface',
     subtitle: 'Blockchain-based decentralized e-voting system',
     description:
       'Ethereum-based decentralized voting application designed to provide a secure, transparent, and tamper-proof election process. Implements blockchain technology to ensure confidentiality, integrity, and availability while enabling secure remote voting and preventing double voting.',
@@ -207,6 +217,8 @@ export const ADDITIONAL_PROJECTS = [
   {
     id: 'strongswan',
     name: 'StrongSwan IPSec VPN',
+    coverImage: '/project-thumbnails/strongswan.svg',
+    coverAlt: 'Illustration of a site-to-site IPSec VPN',
     subtitle: 'Final year network security project',
     shortDesc: 'Configured site-to-site IPSec tunnel using StrongSwan on Linux — tunneling protocols and network security.',
     stack: [

@@ -1,6 +1,13 @@
-import { useRef, useState, Component } from 'react';
+import { useRef, useState, Component, lazy, Suspense } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Turnstile } from '@marsidev/react-turnstile';
+import { SOCIAL_PROFILES } from '../data/seo';
+import { trackEvent } from '../analytics';
+
+const Turnstile = lazy(() =>
+  import('@marsidev/react-turnstile').then(({ Turnstile: TurnstileWidget }) => ({
+    default: TurnstileWidget,
+  })),
+);
 
 // Error boundary so Turnstile failures don't crash the whole form
 class TurnstileErrorBoundary extends Component {
@@ -51,12 +58,24 @@ const CONTACT_INFO = [
   {
     id: 'linkedin',
     label: 'linkedin.com/in/malay-thakkar',
-    href: 'https://linkedin.com/in/malay-thakkar',
+    href: SOCIAL_PROFILES.linkedin,
     icon: (
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
         <rect x="2" y="9" width="4" height="12" />
         <circle cx="4" cy="4" r="2" />
+      </svg>
+    ),
+  },
+  {
+    id: 'instagram',
+    label: 'instagram.com/thakkar_malay',
+    href: SOCIAL_PROFILES.instagram,
+    icon: (
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="18" cy="6" r="0.8" fill="currentColor" stroke="none" />
       </svg>
     ),
   },
@@ -129,7 +148,8 @@ export default function Contact() {
 
     setStatus('sending');
     try {
-      const { _gotcha: _hp, ...payload } = form;
+      const payload = { ...form };
+      delete payload._gotcha;
       const res = await fetch('https://formspree.io/f/mjgdjpqg', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -137,6 +157,7 @@ export default function Contact() {
       });
       if (res.ok) {
         setStatus('success');
+        trackEvent('generate_lead', { method: 'contact_form' });
         setLastSentAt(Date.now());
         setForm({ name: '', email: '', message: '', _gotcha: '' });
         resetCaptcha();
@@ -207,19 +228,31 @@ export default function Contact() {
           />
 
           {/* Cloudflare Turnstile CAPTCHA widget */}
-          <TurnstileErrorBoundary onDevBypass={() => setCaptchaToken('dev-bypass')}>
-            <Turnstile
-              ref={turnstileRef}
-              siteKey={TURNSTILE_SITE_KEY}
-              onSuccess={(token) => {
-                setCaptchaToken(token);
-                if (status === 'no-captcha') setStatus(null);
-              }}
-              onExpire={() => setCaptchaToken(null)}
-              onError={() => setCaptchaToken(null)}
-              options={{ theme: 'auto' }}
-            />
-          </TurnstileErrorBoundary>
+          {inView ? (
+            <TurnstileErrorBoundary onDevBypass={() => setCaptchaToken('dev-bypass')}>
+              <Suspense fallback={
+                <p className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>
+                  Loading security verification…
+                </p>
+              }>
+                <Turnstile
+                  ref={turnstileRef}
+                  siteKey={TURNSTILE_SITE_KEY}
+                  onSuccess={(token) => {
+                    setCaptchaToken(token);
+                    if (status === 'no-captcha') setStatus(null);
+                  }}
+                  onExpire={() => setCaptchaToken(null)}
+                  onError={() => setCaptchaToken(null)}
+                  options={{ theme: 'auto' }}
+                />
+              </Suspense>
+            </TurnstileErrorBoundary>
+          ) : (
+            <p className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>
+              Security verification loads when you reach the contact form.
+            </p>
+          )}
 
           <div className="flex items-center gap-4 flex-wrap">
             <button
@@ -263,7 +296,12 @@ export default function Contact() {
                 <a
                   href={item.href}
                   target={item.href.startsWith('http') ? '_blank' : undefined}
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
+                  onClick={() => {
+                    if (item.id === 'email') {
+                      trackEvent('contact_click', { method: 'email' });
+                    }
+                  }}
                   className="text-sm transition-opacity hover:opacity-70"
                   style={{ color: 'var(--color-text-primary)' }}
                 >

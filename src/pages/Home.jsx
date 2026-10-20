@@ -8,10 +8,12 @@ import Certifications from '../components/Certifications';
 import Contact from '../components/Contact';
 import Resume from '../components/Resume';
 import Footer from '../components/Footer';
+import PageSEO from '../components/PageSEO';
 
 export default function Home({ darkMode, toggleDarkMode }) {
   return (
     <div style={{ background: 'var(--color-bg-primary)', minHeight: '100vh' }}>
+      <PageSEO />
       <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <main>
         <Hero />

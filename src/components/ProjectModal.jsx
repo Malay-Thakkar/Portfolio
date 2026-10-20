@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Lightbox from './Lightbox';
+import { trackEvent } from '../analytics';
 
 const TAG_CLASS = {
   purple: 'tag-purple',
@@ -129,7 +130,13 @@ export default function ProjectModal({ project, onClose }) {
                         }}
                         title={img.label}
                       >
-                        <img src={img.src} alt={img.label} className="w-full h-full object-cover" />
+                        <img
+                          src={img.src}
+                          alt={img.label}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                        />
                         <div
                           className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
                           style={{ background: 'rgba(0,0,0,0.45)' }}
@@ -156,12 +163,24 @@ export default function ProjectModal({ project, onClose }) {
               {/* Buttons */}
               <div className="flex gap-3">
                 {project.github && (
-                  <a href={project.github} target="_blank" rel="noreferrer" className="btn-outline">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-outline"
+                    onClick={() => trackEvent('project_outbound_click', { project_id: project.id, destination: 'github' })}
+                  >
                     GitHub ↗
                   </a>
                 )}
                 {project.live && (
-                  <a href={project.live} target="_blank" rel="noreferrer" className="btn-primary">
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary"
+                    onClick={() => trackEvent('project_outbound_click', { project_id: project.id, destination: 'live_demo' })}
+                  >
                     Live demo ↗
                   </a>
                 )}

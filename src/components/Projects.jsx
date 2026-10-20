@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { PROJECTS } from '../data/projects';
 import ProjectModal from './ProjectModal';
@@ -18,8 +18,6 @@ const cardVariants = {
 };
 
 export default function Projects() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-60px' });
   const [activeProject, setActiveProject] = useState(null);
 
   return (
@@ -31,10 +29,9 @@ export default function Projects() {
       <p className="section-label">Projects</p>
 
       <motion.div
-        ref={ref}
         variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
-        initial="hidden"
-        animate={inView ? 'show' : 'hidden'}
+        initial={false}
+        animate="show"
         className="grid grid-cols-1 md:grid-cols-2 gap-4"
       >
         {PROJECTS.map((project) => (
@@ -46,6 +43,18 @@ export default function Projects() {
             style={project.featured ? { border: '1.5px solid var(--color-accent)' } : {}}
             onClick={() => setActiveProject(project)}
           >
+            <div className="-mx-6 -mt-6 mb-4 aspect-video overflow-hidden rounded-t-[15px] bg-[var(--color-bg-secondary)]">
+              <img
+                src={project.coverImage}
+                alt={project.coverAlt}
+                className="h-full w-full object-cover"
+                width="720"
+                height="405"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
             <div className="flex items-start justify-between mb-2">
               <h3
                 className="text-base font-semibold"
